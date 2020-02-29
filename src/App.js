@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Form } from "@unform/web";
+
+import { Checkbox } from "./components/Form/index";
 
 function App() {
+  const options = [
+    { id: "node", value: "node", label: "Node" },
+    { id: "react", value: "react", label: "ReactJS" }
+  ];
+
+  function handleSubmit(data) {
+    console.log(data);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Checkbox Cursos</h1>
+      <Form onSubmit={handleSubmit} initialData={{ course: ["node"] }}>
+        <div>
+          <Checkbox name="course" options={options} />
+        </div>
+
+        <button type="submit">Enviar </button>
+      </Form>
     </div>
   );
 }
